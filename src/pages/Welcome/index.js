@@ -1,16 +1,23 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import React, { useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Platform,
+} from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 
 const Welcome = () => {
   const navigation = useNavigation();
+  const platform = Platform.OS;
 
   return (
     <View style={styles.container}>
       <View style={styles.containerLogo}>
         <Animatable.Image
-          animation="fadeIn"
+          animation={platform === "ios" ? "fadeInLeft" : "flipInY"}
           delay={200}
           source={require("../../assets/logo.png")}
           style={{ width: "100%" }}
